@@ -12,20 +12,25 @@ body {
     overflow-x: hidden;
 }
 .encabezado {
+    background-color: #1a1a1a;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 10;
+}
+
+.topmenu {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #000;
-    color: #fff;
-    padding: 1rem;
-    position: relative;
-    z-index: 100;
+    padding: 1rem 5%;
+    border-bottom: 1px solid #333;
 }
-.logo {
-    font-size: 1.8rem;
-    font-weight: bold;
+
+.logo img {
+    height: 3rem;
 }
-.nav-bar .nav-list {
+.nav-list {
     display: flex;
     list-style: none;
 }
@@ -35,4 +40,53 @@ body {
     text-decoration: none;
     margin: 0 0.8rem;
     transition: color 0.3s;
+}
+.nav-list li a:hover {
+    color: #ff6600;
+}
+.busqueda {
+    display: flex;
+    flex: 1;
+    max-width: 400px;
+    margin: 0 2rem;
+    position: relative;
+}
+.busquedainput {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    outline: none;
+    font-size: 1rem;
+}
+.iconos {
+    display: flex;
+    gap: 1rem;
+}
+.mainmenu {
+    background-color: #333;
+}
+.mainmenu ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.8rem 0;
+}
+
+.mainmenu li {
+    position: relative;
+}
+
+.mainmenu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.mainmenu a:hover {
+    color: #ff6347;
+    text-shadow: 0 2px 4px rgba(255, 99, 71, 0.6);
 }
