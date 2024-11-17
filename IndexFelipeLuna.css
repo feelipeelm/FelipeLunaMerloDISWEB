@@ -156,57 +156,57 @@ body {
 }
 
 .blog-section {
-    background-color: #fff; /* Fondo blanco para el contraste */
-    padding: 40px 5%; /* Espaciado interno */
-    text-align: center; /* Centrar el título */
+    background-color: #fff;
+    padding: 40px 5%;
+    text-align: center;
 }
 
 .section-title {
     font-size: 1.8em;
     font-weight: bold;
-    color: #333; /* Color del texto */
-    margin-bottom: 20px; /* Espaciado debajo del título */
+    color: #333;
+    margin-bottom: 20px;
 }
 
 .blog-container {
     display: flex;
-    justify-content: space-around; /* Espaciar uniformemente las tarjetas */
-    flex-wrap: wrap; /* Permitir que las tarjetas se ajusten en líneas nuevas */
-    gap: 20px; /* Espaciado entre las tarjetas */
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .blog-box {
-    background-color: #f8f9fa; /* Fondo de la tarjeta */
-    border-radius: 8px; /* Esquinas redondeadas */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    overflow: hidden; /* Ocultar contenido desbordante */
-    width: 30%; /* Ancho de cada tarjeta */
-    transition: transform 0.3s ease; /* Efecto de transición */
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+    width: 30%;
+    transition: transform 0.3s ease; 
 }
 
 .blog-box:hover {
-    transform: translateY(-5px); /* Elevar la tarjeta al pasar el cursor */
+    transform: translateY(-5px); 
 }
 
 .blog-image {
-    width: 100%; /* Ancho completo de la imagen */
-    height: 200px; /* Altura fija para las imágenes */
-    object-fit: cover; /* Ajustar la imagen sin distorsión */
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover;
 }
 
 .blog-title {
-    padding: 15px; /* Espaciado interno del contenido */
-    text-align: left; /* Alinear el texto a la izquierda */
+    padding: 15px; 
+    text-align: left;
 }
 
 .blog-title h3 {
     font-size: 1.2em;
-    color: #444; /* Color del título */
-    margin-bottom: 10px; /* Espaciado debajo del título */
+    color: #444; 
+    margin-bottom: 10px; 
 }
 
 .blog-title p {
     font-size: 0.95em;
-    color: #666; /* Color del párrafo */
-    line-height: 1.4; /* Espaciado entre líneas */
+    color: #666;
+    line-height: 1.4;
 }
