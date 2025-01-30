@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!-- Esta animación crea una transición que ralentiza el cambio de ancho
+	 de varios recuadros durante 2 segundos. Además, a cada de uno de ellos
+	 se le añade una velocidad diferente cuando se lleva a cabo la transición -->	
+	<style> 
+		div.recuadro {
+		  width: 100px;
+		  height: 100px;
+		  background: red;
+		  transition: all 2s;
+		}
+
+		div.recuadro:hover {
+		  width: 300px;		
+		  background: yellow;
+		}
+		
+		#div1 {transition-timing-function: linear;}
+		#div2 {transition-timing-function: ease;}
+		#div3 {transition-timing-function: ease-in;}
+		#div4 {transition-timing-function: ease-out;}
+		#div5 {transition-timing-function: ease-in-out;}
+	</style>
+	<script type="text/javascript">
+		function redimensionar(ancho){
+			document.querySelectorAll(".recuadro").forEach(element => element.style.width = ancho);			
+		}
+	</script>
+</head>
+<body>
+
+	<h1>Transiciones en CSS</h1>
+
+	<p>Posicionáte en el recuadro para ver el efecto</p>
+	
+	<div id="div1" class="recuadro">linear</div><br>
+	<div id="div2" class="recuadro">ease</div><br>
+	<div id="div3" class="recuadro">ease-in</div><br>
+	<div id="div4" class="recuadro">ease-out</div><br>
+	<div id="div5" class="recuadro">ease-in-out</div><br>
+	
+	<button onclick="redimensionar('300px')">Cambiar estilos a la vez</button>
+</body>
+
+</html>

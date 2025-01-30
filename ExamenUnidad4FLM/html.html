@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Ejercicio 1</title>
+
+	<!-- Estilos en un fichero externo que no tendrás que modificar -->
+	<link rel="stylesheet" type="text/css" href="./css.css" />
+
+	<script type="text/javascript">
+		// Se espera a que el contenido del DOM esté cargado antes de ejecutar el código
+		document.addEventListener("DOMContentLoaded", () => {
+
+			// Constantes con la rotación y desplazamiento que hay que realizar
+			const DESP = 100;  // Desplazamiento en porcentaje (al 100% de la pantalla)
+			const ROT = 360;   // Rotación en grados (una rotación completa)
+
+			// Función para obtener el número de milisegundos a partir de los segundos introducidos por el usuario
+			function getMilisegundos() {
+				return document.querySelector("input[name='segundos']").value * 1000;  // Se multiplica por 1000 para convertir a milisegundos
+			}
+
+			// Función para mover y rotar la pelota
+			function desplazar() {
+				var milisegundos = getMilisegundos();  // Obtenemos los milisegundos
+
+				// Aplicamos una animación a la imagen de la pelota con los keyframes
+				document.getElementById("pelota1").animate([ 
+					// keyframes: aplicamos desplazamiento en el eje X y rotación Z
+					{ transform: `translateX(${DESP}%) rotateZ(${ROT}deg)` }
+				], {
+					// Definimos las propiedades de la animación
+					duration: milisegundos,  // Duración de la animación en milisegundos
+					easing: 'ease-in-out',   // Tipo de suavizado de la animación
+					iterations: 1,           // Número de veces que se ejecuta la animación (1 vez)
+				});
+			}
+
+			// Función que devuelve una promesa y realiza la animación de desplazamiento
+			function performedTask() {
+				let milisegundos = getMilisegundos();  // Obtenemos la duración en milisegundos
+
+				return new Promise(res => {
+					desplazar();  // Llamamos a la función de desplazar
+					// Establecemos un setTimeout para que la promesa se resuelva después de la duración de la animación
+					setTimeout(() => {
+						res();  // Resolvemos la promesa cuando termine el tiempo
+					}, milisegundos);
+				})
+			}
+
+			// Añadimos un 'listener' al botón para que ejecute la animación cuando se haga clic
+			document.getElementById("pulsador").addEventListener("click", () => {
+
+				// Comprobamos que el valor introducido en el campo de texto es mayor que 0
+				if (getMilisegundos() < 1) {
+					// Si el valor es menor que 1 segundo, mostramos una alerta
+					alert("Debe de introducir un número de segundos mayor que 0");
+				} else {
+					// Si el valor es válido, ocultamos el botón mientras se realiza la animación
+					document.getElementById("pulsador").style.display = "none";
+
+					// Llamamos a la promesa y, cuando termine, mostramos nuevamente el botón
+					performedTask().then(() => {
+						document.getElementById("pulsador").style.display = "initial";  // Hacemos visible el botón de nuevo
+					});
+				}
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<!-- Imagen de la pelota, identificada por 'pelota1' -->
+	<img id="pelota1" class="pelota" src="pelota1.png" />
+	
+	<div id="contenedor">
+		<!-- Botón que activa la animación, identificado por 'pulsador' -->
+		<div id="pulsador" class="activador"><span>A rodar</span></div>
+		<!-- Campo de texto donde el usuario introduce los segundos -->
+		<input type="text" name="segundos" size="5" class="activador"></input>
+	</div>
+
+	<!-- Script que enlaza el archivo JS (aunque no se utiliza directamente en este código) -->
+	<script src="Ejercicio1_Felix_Martinez.js"></script>
+</body>
+
+</html>

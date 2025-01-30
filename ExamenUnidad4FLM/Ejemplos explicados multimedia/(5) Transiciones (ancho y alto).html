@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!-- Esta animación crea una transición que ralentiza el cambio de ancho
+	y alto de un recuadro durante 2 y 4 segundos respectivamente-->	
+	<style> 
+		div.recuadro {
+		  width: 100px;
+		  height: 100px;
+		  background: red;
+		  transition: width 2s, height 4s;
+		  /*transition-property: width, height;
+		  transition-duration: 2s, 4s;*/
+		}
+
+		div.recuadro:hover {
+		  width: 300px;
+		  height: 300px;
+		}
+	</style>
+</head>
+<body>
+
+	<h1>Transiciones en CSS</h1>
+
+	<p>Posicionáte en el recuadro para ver el efecto</p>
+	<div class="recuadro"></div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Este ejemplo sirve para probar la etiqueta picture de HTML5 con varias resoluciones.
+		 Esta etiqueta, aparte de mostrar una imagen por resolución, también tiene en cuenta el DPI
+		 y además se adapta al tamaño definido en el CSS -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	
+		div{
+			width: 100%; 
+		}
+		
+		source,img{
+			width: 100%; /* Se fuerza el 100%, según la imagen que coja la etiqueta picture */
+		}
+	</style>
+</head>
+<body>
+
+<div>
+	<!-- El tamaño definido en el CSS sobreescribe al de sizes, pero coge la imagen según este atributo  -->	
+	<picture>  
+		<source
+			media="(min-width: 600px)"
+			sizes="50vw" 
+			srcset="images/opera-house-landscape-400.jpg 400w,
+					images/opera-house-landscape-800.jpg 800w,
+					images/opera-house-landscape-1200.jpg 1200w">
+		<img
+			src="opera-house-400.jpg" alt="The Oslo Opera House"
+			sizes="80vw"
+			srcset="images/opera-house-400.jpg 400w,
+					images/opera-house-800.jpg 800w,
+					images/opera-house-1200.jpg 1200w">
+	</picture>
+</div>
+
+</body>
+</html>
