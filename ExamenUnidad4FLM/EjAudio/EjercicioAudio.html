@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <title>Document</title>
+</head>
+<body>
+    <audio id="audio-fondo" loop autoplay preload="meta">
+		<source src="EjAudio/thinking-time-148496.ogg" type="audio/ogg">
+		<source src="EjAudio/thinking-time-148496.mp3" type="audio/mpeg">
+	</audio>
+
+    <div class="Buttons">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="stop">Stop</button>
+        <button id="volumeup">Volume Up</button>
+        <button id="volumedown">Volume Down</button>
+
+        
+    </div>
+
+
+    <script>
+        const audio = document.getElementById('audio-fondo');
+
+        const playButton = document.getElementById('play');
+        const pauseButton = document.getElementById('pause');
+        const stopButton = document.getElementById('stop');
+        const VolumeUpButton = document.getElementById('volumeup')
+        const VolumeDownButton = document.getElementById('volumedown')
+
+
+
+        playButton.addEventListener('click', () => {
+            audio.play();
+        });
+        pauseButton.addEventListener('click', () => {
+            audio.pause();
+        });
+        stopButton.addEventListener('click', () => {
+            audio.pause();
+            audio.currentTime = 0;
+        });
+        VolumeUpButton.addEventListener('click', () => {
+            if (audio.volume < 1) {
+                audio.volume = audio.volume + 0.1;
+            }
+        });
+        VolumeDownButton.addEventListener('click', () => {
+            if (audio.volume > 0) {
+                audio.volume = audio.volume - 0.1;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+
+<!-- 
+	Este ejemplo implementa una animación que con fill-mode: backwards
+	permanece en el estilo inicial durante el tiempo de espera definido 
+	con animation-delay y cuando termina vuelve al estilo que tenía antes
+	de la animación
+	
+	En los comentarios se da la opción de que el usuario pruebe con los valores forwards y both y compruebe las diferencias.
+	El valor forwards de animation-fill-mode deja los elementos afectados en el último estado de la animación.
+	Mientras que both combina forwards y backwards
+-->
+
+<style>
+	body {
+		padding: 1em;
+		text-align: center;
+	}
+
+	@keyframes myAnim {
+	  	from {
+			background-color: blue;
+		}
+
+		to {
+			background-color: pink;
+			transform: translateX(500px) scale(.5);
+		}
+	  
+	}
+
+	.ball {
+		width: 200px;
+		height: 200px;		
+		background-color: red;
+		border-radius: 50%;
+		animation: myAnim 2s backwards 3s;		
+		/* Probar con forwards y both */
+	}
+
+</style>
+
+</head>
+<body>
+
+<h1>Ejemplo con animation-fill-mode: backwards</h1>
+
+<div class="ball"></div>
+
+</body>
+</html>

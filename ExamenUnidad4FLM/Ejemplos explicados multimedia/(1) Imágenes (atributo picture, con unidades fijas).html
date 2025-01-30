@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Este ejemplo sirve para probar la etiqueta picture de HTML5 con varias resoluciones y
+		mezclando unidades de medida relativas y absolutas -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	
+		div{
+			width: 50%; /* Para comprobar que los tamaños vw desbordan el ancho del contenedor */
+		}
+	</style>
+</head>
+<body>
+
+<div> <!-- Si las unidades solo son fijas como en <img>, siempre va a coger la misma imagen. En la etiqueta <source> depende de la resolución
+			según lo especificado en sizes -->
+	<picture>	
+		<source
+			media="(min-width: 600px)"
+			sizes="(min-width: 800px)50vw,500px"
+			srcset="images/opera-house-landscape-400.jpg 400w,
+					images/opera-house-landscape-800.jpg 800w,
+					images/opera-house-landscape-1200.jpg 1200w">
+		<img
+			src="opera-house-400.jpg" alt="The Oslo Opera House"
+			sizes="300px"
+			srcset="images/opera-house-400.jpg 400w,
+					images/opera-house-800.jpg 800w,
+					images/opera-house-1200.jpg 1200w">
+	</picture>
+</div>
+
+</body>
+</html>

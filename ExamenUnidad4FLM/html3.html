@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ejercicio 3</title>
+</head>
+
+<body>
+
+	<!-- Estilo básico para el cuerpo y el botón de reinicio -->
+	<style>
+		body {
+			text-align: center;  /* Alinea el contenido en el centro de la página */
+		}
+
+		#reiniciar {
+			width: 100px;  /* Ancho del botón */
+		}
+	</style>
+
+	<!-- Se crea un componente de semáforo con un atributo 'seconds' que establece el tiempo de cambio -->
+	<mi-semaforo seconds="1000"></mi-semaforo>
+
+	<!-- Botón de reiniciar -->
+	<button id="reiniciar">REINICIAR</button>
+
+	<!-- Código JavaScript para controlar la lógica del semáforo -->
+	<script type="text/javascript">
+
+		// Se crea un template para el semáforo (HTML + CSS)
+		const templateSwitch = document.createElement('template');
+
+		templateSwitch.innerHTML = `
+		<style>
+			main div {
+				width: 100px;		/* Ancho de los círculos */
+				height: 100px;		/* Alto de los círculos */
+				border: 1px solid black;  /* Borde negro alrededor de los círculos */
+				margin: 5px auto;	/* Márgenes automáticos para centrar los círculos */
+			}
+
+			.rojo {
+				background-color: red;	/* Fondo rojo para el círculo de semáforo */
+			}
+
+			.gris {
+				background-color: grey;	/* Fondo gris para el círculo de semáforo */
+			}
+
+			.verde {
+				background-color: green;	/* Fondo verde para el círculo de semáforo */
+			}
+
+		</style>
+		<main>
+			<div id="primer_semaforo" class="rojo"></div>  <!-- Primer semáforo (rojo) -->
+			<div id="segundo_semaforo" class="gris"></div> <!-- Segundo semáforo (gris) -->
+		</main>
+		`;
+
+		// Variable para almacenar la referencia del intervalo de tiempo
+		let interval;
+
+		// Definición de la clase personalizada Semaforo, extendiendo HTMLElement
+		class Semaforo extends HTMLElement {
+			// Constructor del componente personalizado
+			constructor() {
+				super();
+
+				// Se adjunta un Shadow DOM cerrado al componente para mantener el encapsulamiento
+				this._shadowRoot = this.attachShadow({ mode: 'closed' });
+
+				// Se inserta el contenido del template dentro del Shadow DOM
+				this._shadowRoot.appendChild(templateSwitch.content.cloneNode(true));
+
+				// Referencias a los elementos del semáforo que se van a modificar más adelante
+				this.$primer_semaforo = this._shadowRoot.getElementById("primer_semaforo");
+				this.$segundo_semaforo = this._shadowRoot.getElementById("segundo_semaforo");
+				this.$boton_reiniciar = document.getElementById("reiniciar");
+
+				this.seconds = 1000;  // Tiempo de espera entre los cambios de color (en milisegundos)
+
+				// Evento que se activa cuando se hace clic en el primer semáforo
+				this.$primer_semaforo.addEventListener('click', () => {
+					// Alternamos el color del primer semáforo entre rojo y gris
+					this.$primer_semaforo.classList.toggle("rojo");
+					this.$primer_semaforo.classList.toggle("gris");
+
+					// Alternamos el color del segundo semáforo entre verde y gris
+					this.$segundo_semaforo.classList.toggle("verde");
+					this.$segundo_semaforo.classList.toggle("gris");
+
+					// Si hay un intervalo activo, se limpia para detenerlo
+					if (interval) {
+						clearInterval(interval);
+					}
+				});
+
+				// Función que crea un intervalo para cambiar el color del semáforo a intervalos regulares
+				function intervalFunction(f, tiempo) {
+					interval = setInterval(f, tiempo);  // Ejecuta 'f' cada 'tiempo' milisegundos
+				}
+
+				// Evento que se activa cuando se hace clic en el segundo semáforo
+				this.$segundo_semaforo.addEventListener('click', () => {
+					// Se asegura de que el primer semáforo quede gris y no rojo
+					this.$primer_semaforo.classList.add("gris");
+					this.$primer_semaforo.classList.remove("rojo");
+
+					// Se asegura de que el segundo semáforo no esté rojo
+					this.$segundo_semaforo.classList.remove("rojo");
+
+					// Llama a la función intervalFunction para alternar el color del segundo semáforo entre gris y verde
+					intervalFunction(() => {
+						this.$segundo_semaforo.classList.toggle("gris");
+						this.$segundo_semaforo.classList.toggle("verde");
+					}, this.seconds);
+				});
+
+				// Evento que se activa cuando se hace clic en el botón de reiniciar
+				this.$boton_reiniciar.addEventListener('click', () => {
+					this.seconds = 1000;  // Restablece el tiempo a 1000 ms (1 segundo)
+
+					// Si hay un intervalo activo, se limpia para detenerlo
+					if (interval) {
+						clearInterval(interval);
+					}
+
+					// Restaura los colores iniciales del semáforo
+					this.$primer_semaforo.classList.remove("gris");
+					this.$primer_semaforo.classList.add("rojo");
+
+					this.$segundo_semaforo.classList.remove("verde");
+					this.$segundo_semaforo.classList.add("gris");
+				});
+			}
+
+			/*
+				connectedCallback: Este método se invoca cuando el componente personalizado se añade al DOM.
+				Puede usarse para inicializar el componente o para realizar alguna acción adicional si fuera necesario.
+
+				disconnectedCallback: Este método se invoca cuando el componente personalizado se elimina del DOM.
+
+				adoptedCallback: Se invoca cuando el componente es movido a un nuevo documento.
+
+				attributeChangedCallback: Se invoca cuando uno de los atributos observados cambia.
+			*/
+
+			// Se invoca cuando se modifica el valor de los atributos especificados en observedAttributes
+			attributeChangedCallback(attr, oldVal, newVal) {
+				// Actualiza el valor de 'seconds' cuando el atributo cambie
+				this.seconds = (newVal * 1000);  // Convierte el valor a milisegundos
+			}
+
+			// Atributos reactivos: cuando cambian los atributos 'seconds', se invoca attributeChangedCallback
+			static get observedAttributes() {
+				return ['seconds'];
+			}
+
+			// Getter y setter para el atributo 'seconds' del semáforo
+			get seconds() {
+				// Obtiene el valor del atributo 'seconds' en milisegundos
+				return (parseInt(this.getAttribute('seconds')) * 1000);
+			}
+
+			// Setter para el atributo 'seconds' que actualiza el valor del atributo en el componente
+			set seconds(value) {
+				this.setAttribute('seconds', value);
+			}
+		}
+
+		// Definimos el componente 'mi-semaforo' usando la clase Semaforo
+		customElements.define('mi-semaforo', Semaforo);
+
+	</script>
+</body>
+
+</html>

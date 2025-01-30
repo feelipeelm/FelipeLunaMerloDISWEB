@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Esta p�gina sirve para probar el funcionamiento de la etiqueta picture de HTML5
+		 Esta etiqueta permite cambiar la URL de una imagen en funci�n de varios par�metros
+		 En este se caso se definen varios formatos por si el navegador no acepta alguno de ellos -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+	</style>
+
+</head>
+<body>
+	<!-- Cambio de formato en funci�n de si el navegador lo acepta o no -->
+	<picture>
+		<source type="image/webp" srcset="images/butterfly.webp">
+		<source type="image/png" srcset="images/butterfly.png">
+		<img src="images/butterfly.jpg" alt="a butterfly">
+	</picture>
+</body>
+</html>

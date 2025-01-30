@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<!-- Esta página sirve para probar el funcionamiento de la etiqueta audio de HTML5
+		 La idea es definir varios formatos por si alguno de ellos no funciona en algún navegador
+		 En caso de que la etiqueta audio no esté soportada en el navegador se muestra un mensaje -->
+
+	<style type="text/css">
+		.audio-fondo {
+			background-color: yellow;
+		} 
+	</style>
+
+</head>
+
+<body>
+
+	<audio class="audio-fondo" controls preload="meta">
+		<source src="audio/horse.ogg" type="audio/ogg">
+		<source src="audio/horse.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+
+</body>
+</html>

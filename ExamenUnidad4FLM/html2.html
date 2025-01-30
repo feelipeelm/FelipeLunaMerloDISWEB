@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ejercicio 2</title>
+</head>
+
+<body>
+
+	<!-- Se inserta un nuevo elemento personalizado en el HTML -->
+	<mi-semaforo></mi-semaforo>
+
+	<script type="text/javascript">
+		// Se crea un template para el componente 'mi-semaforo'
+		const templateSwitch = document.createElement('template');
+
+		// Definimos el contenido de la plantilla HTML
+		templateSwitch.innerHTML = `
+		<style>
+			main div {
+				width: 100px;		/* Ancho de los círculos */
+				height: 100px;		/* Alto de los círculos */
+				border: 1px solid black; /* Borde negro alrededor de los círculos */
+				margin: 5px auto;	/* Márgenes automáticos para centrar los círculos */
+			}
+
+			.rojo {
+				background-color: red;	/* Fondo rojo para el círculo rojo */
+			}
+
+			.gris {
+				background-color: grey;	/* Fondo gris para el círculo gris */
+			}
+
+		</style>
+		<main>
+			<!-- Dos divs, uno con fondo rojo y otro gris -->
+			<div class="rojo"></div>
+			<div class="gris"></div>		
+		</main>
+		`;
+
+		// Definición de la clase 'Semaforo', que extiende HTMLElement
+		class Semaforo extends HTMLElement {
+			// Constructor de la clase que se llama cuando el elemento se crea
+			constructor() {
+				super();
+
+				// Se adjunta un Shadow DOM cerrado al componente
+				this._shadowRoot = this.attachShadow({ mode: 'closed' });
+
+				// Se añade el contenido del template al Shadow DOM del componente
+				this._shadowRoot.appendChild(templateSwitch.content.cloneNode(true));
+			}
+
+			/*
+				connectedCallback: Este método se invoca cuando el componente personalizado se agrega al DOM.
+				Podría ser útil para inicializar propiedades o agregar más funcionalidad si fuera necesario.
+
+				disconnectedCallback: Este método se invoca cuando el componente personalizado se elimina del DOM.
+				Podríamos usarlo para liberar recursos, pero no se usa en este caso.
+
+				adoptedCallback: Se invoca cuando el componente es movido a un nuevo documento.
+				No se utiliza aquí.
+
+				attributeChangedCallback: Se invoca cada vez que el valor de un atributo observado cambia.
+				Puede ser útil si queremos que el semáforo cambie de estado al modificar algún atributo.
+			*/
+
+			// Método que se llama cuando los atributos observados cambian
+			attributeChangedCallback(attr, oldVal, newVal) {
+				// Aquí podríamos agregar lógica para manejar cambios en el atributo 'seconds'
+			}
+
+			// Este método estático define los atributos que se desean observar.
+			// 'seconds' es el atributo que será observado y se disparará la función 'attributeChangedCallback' cuando cambie.
+			static get observedAttributes() {
+				return ['seconds'];  // Solo observamos el atributo 'seconds'
+			}
+
+			// Getter y setter para el atributo 'seconds' del componente
+			get seconds() {
+				// Devuelve el valor del atributo 'seconds'
+				return this.getAttribute('seconds');
+			}
+
+			// Setter para el atributo 'seconds' que actualiza el valor del atributo en el componente
+			set seconds(value) {
+				this.setAttribute('seconds', value);
+			}
+		}
+
+		// Definimos el elemento personalizado 'mi-semaforo' usando la clase Semaforo
+		customElements.define('mi-semaforo', Semaforo);
+
+	</script>
+</body>
+
+</html>

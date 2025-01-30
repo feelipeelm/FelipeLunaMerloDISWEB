@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<!-- El objetivo de esta página es probar el funcionamiento de las animaciones con un div que despaza de izquierda a derecha.
+		 Se emplea la propiedad abreviada de animation para establecer una duración de 5s y se ejecutará de manera infinita mientras--
+		 el navegador siga abierto (valor infinite)-->
+	<style>		
+		div
+		{
+			width:100px;
+			height:100px;
+			background:red;
+			position:relative;
+			animation: mymove 5s infinite;
+			/*animation-name: mymove;
+			animation-duration: 5s;
+			animation-iteration-count: 3;*/
+		}
+
+		@keyframes mymove
+		{
+			from {left:0px;}
+			to {left:200px;}
+		}
+
+	</style>
+</head>
+<body>
+
+	<div></div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<!-- En esta página se prueba a incluir vídeos de YouTube con propiedades relativas a la reproducción automáticamente
+	 e indefinida mediante la API del sitio de YouTube. Existen una serie de parámetros en la URL que permiten incluir
+	 propiedades similares a las de la etiqueta video de HTML5 -->
+
+<body>
+
+	<iframe width="420" height="345"
+		src="https://www.youtube.com/embed/t2ByLmLnYJ8?controls=0&autoplay=1&mute=1">
+	</iframe> <!-- Se reproduce automáticamente solo si añadimos mute y no mostramos los controles-->
+
+	<iframe width="420" height="345" src="https://www.youtube.com/embed/t2ByLmLnYJ8?&autoplay=1" 
+		title="YouTube video player" frameborder="0" 
+		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+		allowfullscreen>
+	</iframe> <!-- En las últimas versiones de la API, se incluye la etiqueta allow al insertar un vídeo 
+				   de YouTube. Si se incluye el valor autoplay, entonces funcionará esta propiedad
+				   en algunos navegadores incluso aún con el volumen sin silenciar -->
+
+	<iframe width="420" height="345"
+		src="https://www.youtube.com/embed?listType=playlist&playlist=t2ByLmLnYJ8&loop=1&controls=2">
+	</iframe> <!-- Es necesario incluir una playlist solamente con el vídeo para repetir el vídeo con loop
+				   Para ello, después de embed no hace falta incluir el código del vídeo
+				   Con el parámetro listType=playlist y playlist=código1,código2... se crea la playlist-->
+
+</body>
+</html>
