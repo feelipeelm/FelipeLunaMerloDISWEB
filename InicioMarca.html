@@ -10,9 +10,16 @@
     <header>
         <h1>LA CASA</h1>
         <picture>
-            <img src="./logo.png" class="logo">
-            <source srcset="logo-large.png" type="image/png" media="(min-width: 1024px)">
+
+            <img src="./logo.png" alt="Logotipo" class="logo">
+            <source srcset="logo-large.webp" type="image/webp" media="(min-width: 1024px)" sizes="50vw">
+            <source srcset="logo-large.png" type="image/png" media="(min-width: 1024px)" sizes="50vw">
+
+            <source srcset="logo-medium.webp" type="image/webp" media="(min-width: 768px)">
             <source srcset="logo-medium.png" type="image/png" media="(min-width: 768px)">
+
+            <source srcset="logo-small.webp" type="image/webp" media="(max-width: 767px)">
+            <source srcset="logo-small.png" type="image/png" media="(max-width: 767px)">            
         </picture>
         </picture>
     </header>
@@ -27,6 +34,12 @@
         <img src="./prenda1.png">
         <img src="./prenda2.png">
     </section>
+    <div class="tallas">
+        <button class="talla">S</button>
+        <button class="talla">M</button>
+        <button class="talla">L</button>
+        <button class="talla">XL</button>
+    </div>
     <section class="transicion">
         <p>Añadir al carrito</p>
     </section>
@@ -35,6 +48,26 @@
         <img src="./prenda3.png">
         <img src="./prenda4.png">
     </section>
+    <div class="tallas">
+        <button class="talla">S</button>
+        <button class="talla">M</button>
+        <button class="talla">L</button>
+        <button class="talla">XL</button>
+    </div>
+    <section class="transicion">
+        <p>Añadir al carrito</p>
+    </section>
+    <section class="productos">
+        <h2>Drop 04</h2>
+        <img src="./prenda5.png">
+        <img src="./prenda6.png">
+    </section>
+    <div class="tallas">
+        <button class="talla">S</button>
+        <button class="talla">M</button>
+        <button class="talla">L</button>
+        <button class="talla">XL</button>
+    </div>
     <section class="transicion">
         <p>Añadir al carrito</p>
     </section>
@@ -47,7 +80,55 @@
         <br>
         <iframe class="video1" width="640" height="365" src="https://www.youtube.com/embed/Gvvmth1ADUw?autoplay=1&mute=1&playlist=Gvvmth1ADUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </section>
-
+    <audio id="audio-fondo" loop preload="auto">
+        <source src="./thinking-time-148496.ogg" type="audio/ogg">
+        <source src="./thinking-time-148496.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
     
+    <p>Pulsa aqui para añadir musica de fondo a  la pagina web</p>
+    <div class="Buttons">
+        <button id="play">Play</button>
+        <button id="pause">Pause</button>
+        <button id="stop">Stop</button>
+        <button id="volumeup">Volume Up</button>
+        <button id="volumedown">Volume Down</button>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var audio = document.getElementById("audio-fondo");
+    
+            // Ajustar volumen inicial al 50%
+            audio.volume = 0.5;
+    
+            // Botón Play
+            document.getElementById("play").addEventListener("click", function () {
+                audio.play();
+            });
+    
+            // Botón Pause
+            document.getElementById("pause").addEventListener("click", function () {
+                audio.pause();
+            });
+    
+            // Botón Stop (pausa y vuelve al inicio)
+            document.getElementById("stop").addEventListener("click", function () {
+                audio.pause();
+                audio.currentTime = 0;
+            });
+    
+            // Subir volumen
+            document.getElementById("volumeup").addEventListener("click", function () {
+                if (audio.volume < 1) audio.volume += 0.1;
+            });
+    
+            // Bajar volumen
+            document.getElementById("volumedown").addEventListener("click", function () {
+                if (audio.volume > 0) audio.volume -= 0.1;
+            });
+        });
+    </script>
+    </br>
 </body>
 </html>
