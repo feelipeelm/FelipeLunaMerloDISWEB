@@ -8,18 +8,38 @@ body {
     background-color: white;
     color: black;
     text-align: center;
-    font-family: Arial, sans-serif;
-}
+    font-family: Arial, sans-serif;}
 header {
     margin: 0px;
     padding: 1px;
     font-size: 24px;
     background-color: #c4cbca;
     color: black;
+
 }
 img.logo {
     width: 200px;
     margin: 0px;
+}
+.productos {
+    animation: mover 2s forwards;
+    position: relative;
+    left: -100%;
+    margin-top: 30px;
+}
+.productos img {
+    animation: mover 2s forwards;
+    position: relative;
+    left: -100%;
+    margin-top: 30px;
+}
+@keyframes mover {
+    from { left: -100%; }
+    to { left: 0; }
+}
+@keyframes fadeInOut {
+    from { color: transparent; }
+    to { color: black; }
 }
 .menu {
     background-color: #585481;
@@ -28,10 +48,49 @@ img.logo {
 }
 .animacion {
     font-size: 30px;
-    animation: girar 2s linear infinite;
+    white-space: nowrap;
+    position: relative;
+    animation: moverTexto 5s linear infinite;
+    margin-top: 15px;
+    color: #a29ec8;
 }
-@keyframes girar {
-    from { transform: rotate(0deg);} 
-    to { transform: rotate(360deg);} 
+.banner{
+    border: black 3px;
 }
+@keyframes moverTexto {
+    from { left: -100%; }
+    to { left: 100%; }
+}
+.transicion {
+    padding: 20px;
+    transition: background 1s;
+    animation: fadeInOut 10s infinite alternate, moverTexto 5s infinite linear;
+    color: transparent;
+}
+
+.transicion:hover {
+    background: #585481;
+    color: black;
+}
+.videos {
+    margin-top: 20px;
+    animation: mover2 3s backwards;
+    position: relative;
+    animation-delay: 2s;
+
+}
+.video1 {
+    margin-top: 20px;
+    animation: mover2 3s backwards;
+    animation-delay: 2s;
+    position: relative;
+    margin-bottom: 20px;
+}
+@keyframes mover2 {
+    from { left: 100%; }
+    to { left: 0; }
+}
+
+
+
 
