@@ -46,3 +46,51 @@ function pintarGuiones(num) {
     }
     buttons = document.getElementsByClassName('letra');
   }
+
+// Chequear intento
+function intento(letra) {
+    document.getElementById(letra).disabled = true;
+    if (palabra.includes(letra)) {
+      palabra.split("").forEach((l, i) => {
+        if (l === letra) oculta[i] = letra;
+      });
+      hueco.innerHTML = oculta.join(" ");
+      mostrarMensaje("Bien!", "verde");
+    } else {
+      cont--;
+      document.getElementById("intentos").innerHTML = cont;
+      mostrarMensaje("Fallo!", "rojo");
+      document.getElementById("image" + cont).classList.add("fade-in");
+    }
+    compruebaFin();
+  }
+  
+
+
+  function mostrarMensaje(msg, clase) {
+    const mensaje = document.getElementById("acierto");
+    mensaje.innerHTML = msg;
+    mensaje.className = `acierto ${clase}`;
+    setTimeout(() => mensaje.className = "", 800);
+  }
+  
+
+  
+  // Comprobar si ha finalizado
+  function compruebaFin() {
+    if (!oculta.includes("_")) {
+      mostrarFinal("Felicidades !!");
+    } else if (cont === 0) {
+      mostrarFinal(`Game Over - La palabra era: ${palabra}`);
+    }
+  }
+  
+
+// Iniciar juego
+async function inicio() {
+    await generaPalabra();
+    pintarGuiones(palabra.length);
+    generaABC("a", "z");
+    cont = 6;
+    document.getElementById("intentos").innerHTML = cont;
+  }
