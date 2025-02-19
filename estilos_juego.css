@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background-color: #f0f8ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  .main-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1.titulo {
+    margin: 50px auto 20px auto;
+    text-align: center;
+    font-family: 'Georgia', serif;
+    color: #2c3e50;
+  }
+  
+  h1#msg-final {
+    text-align: center;
+    color: crimson;
+    transition: all .5s ease;
+    transform: scale(0);
+    min-height: 50px;
+    margin-bottom: 0;
+  }
+  
+  .zoom-in {
+    transform: scale(1) !important;
+  }
+  
+  #acierto {
+    text-align: center;
+    min-height: 24px;
+    transform: scale(0);
+  }
+  
+  .acierto {
+    animation: zoomInOut 1s ease;
+  }
+  
+  .rojo {
+    color: red;
+  }
+  
+  .verde {
+    color: green;
+  }
