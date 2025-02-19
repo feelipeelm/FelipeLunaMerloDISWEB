@@ -9,7 +9,8 @@
     <div class="main-container">
 
         <h1 class="titulo">Juego del ahorcado</h1>
-       
+        <h1 id="msg-final"></h1>
+        <h3 id="acierto"></h3>
         <div class="flex-row no-wrap">
           <h2 class="palabra" id="palabra"></h2>
           <picture>
@@ -23,9 +24,22 @@
           </picture>
         </div>
         <div class="flex-row" id="turnos">
-          <div class="col">
-            <h3>Intentos restantes: <span id="intentos">6</span></h3>
-      </div>
-    
+            <div class="col">
+              <h3>Intentos restantes: <span id="intentos">6</span></h3>
+            </div>
+            <div class="col">
+              <button onclick="inicio()" id="reset">Elegir otra palabra</button>
+              <button onclick="pista()" id="pista">Dame una pista!</button>
+              <span id="hueco-pista"></span>
+            </div>
+        </div>
+        <div class="flex-row">
+            <div class="col">
+              <div class="flex-row" id="abcdario">
+              </div>
+            </div>
+            <div class="col"></div>
+          </div>
+      <script src="JavaFelipeLuna.js"></script>
 </body>
 </html>
