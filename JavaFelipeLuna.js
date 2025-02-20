@@ -13,6 +13,39 @@ var buttons;
 var btnInicio = document.getElementById("reset");
 
 
+// Pantalla de carga e intrucciones
+function mostrarCarga() {
+    const pantallaCarga = document.createElement("div");
+    pantallaCarga.id = "pantalla-carga";
+    pantallaCarga.innerHTML = `<h2>Cargando...</h2>`;
+    document.body.appendChild(pantallaCarga);
+  
+    setTimeout(() => {
+      pantallaCarga.remove();
+      mostrarInstrucciones();
+    }, 2000);
+  }
+  
+
+  function mostrarInstrucciones() {
+    const instrucciones = document.createElement("div");
+    instrucciones.id = "pantalla-instrucciones";
+    instrucciones.innerHTML = `
+      <h2>Instrucciones del Juego</h2>
+      <p>Adivina la palabra secreta antes de que se complete el dibujo del ahorcado.</p>
+      <p>Tienes 6 intentos. Usa el abecedario para seleccionar letras.</p>
+      <button onclick="cerrarInstrucciones()">Comenzar Juego</button>
+    `;
+    document.body.appendChild(instrucciones);
+  }
+  
+  function cerrarInstrucciones() {
+    const instrucciones = document.getElementById("pantalla-instrucciones");
+    instrucciones.remove();
+    inicio();
+  }
+
+
 async function generaPalabra() {
     await new Promise(resolve => setTimeout(resolve, 500));
     rand = (Math.random() * palabras.length).toFixed(0);
